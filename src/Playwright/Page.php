@@ -444,9 +444,7 @@ final class Page
     public function screenshotElement(string $selector, ?string $filename = null, ?string $scale = null): string
     {
         $locator = $this->locator($selector);
-        $binary = $locator->screenshot([
-            'scale' => $scale ?? 'css',
-        ]);
+        $binary = $locator->screenshot($scale === null ? null : ['scale' => $scale]);
 
         return Screenshot::save($binary, $filename);
     }
